@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
@@ -9,57 +9,35 @@ export default function Navbar(props) {
       className={`navbar navbar-expand-lg bg-${props.mode} navbar-${props.mode}`}
     >
       <div className="container-fluid">
-        {/* <Link className="navbar-brand" to="/">{props.title}</Link> */}
-        <a className="navbar-brand" href="/">{props.title}</a>
+        <Link className="navbar-brand" to="/">{props.title}</Link>
+        {/* <a className="navbar-brand" href="/">{props.title}</a> */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              {/* <Link className="nav-link active" aria-current="page" to="/">Home</Link> */}
-              <a className="nav-link active" aria-current="page" href="/">Home</a>
+              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+              {/* <a className="nav-link active" aria-current="page" href="/">Home</a> */}
             </li>
             <li className="nav-item">
-              {/* <Link className="nav-link" to="/about">{props.about}</Link> */}
-              <a className="nav-link" href="/">{props.about}</a>
+              <Link className="nav-link" to="/about">{props.about}</Link>
+              {/* <a className="nav-link" href="/">{props.about}</a> */}
             </li>
           </ul>
-          <button
-            style={{ height: "20px", width: "20px", backgroundColor: "green" }}
-            className="mx-3"
-            onClick = {()=>{props.handleTheme("green", "yellow")}}
-            ></button>  
-          <button
-            style={{ height: "20px", width: "20px", backgroundColor: "grey" }}
-            className="mx-3"
-            onClick = {()=>{props.handleTheme("grey", "red")}}
-            ></button>
-          <button
-            style={{ height: "20px", width: "20px", backgroundColor: "blue" }}
-            className="mx-3"
-            onClick = {()=>{props.handleTheme("blue", "yellow")}}
-            ></button>
-          <button
-            style={{ height: "20px", width: "20px", backgroundColor: "black" }}
-            className="mx-3"
-            onClick = {()=>{props.handleTheme("black", "white")}}
-          ></button>
 
-          {/* <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-primary" type="submit">
-              Search
-            </button>
-          </form> */}
+          <div className="d-flex">
+            <div onClick={()=>{props.toggleMode('primary')}} className="bg-primary rounded mx-2" style={{height:"20px", width:"20px", cursor:"pointer"}}></div>
+            <div onClick={()=>{props.toggleMode('danger')}} className="bg-danger rounded mx-2" style={{height:"20px", width:"20px", cursor:"pointer"}}></div>
+            <div onClick={()=>{props.toggleMode('success')}} className="bg-success rounded mx-2" style={{height:"20px", width:"20px", cursor:"pointer"}}></div>
+            <div onClick={()=>{props.toggleMode('warning')}} className="bg-warning rounded mx-2" style={{height:"20px", width:"20px", cursor:"pointer"}}></div>
+          </div>
+
+
+
           <div className="form-check form-switch">
             <input
               className="form-check-input"
-              onClick={props.toggleMode}
-              type="checkbox"
+              onClick={()=>{props.toggleMode(null)}}
               role="switch"
+              type="checkbox"
               id="flexSwitchCheckDefault"
             />
             <label

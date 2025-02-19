@@ -20,6 +20,7 @@ export default function TextForm(props) {
     // let copyText = document.getElementById('myBox');
     // // copyText.select();
     // navigator.clipboard.writeText(copyText.value);
+    // document.getSelection().removeAllRanges();
 
     navigator.clipboard.writeText(text);
     props.showAlert("Copied to clipboard", "success");
@@ -43,7 +44,7 @@ export default function TextForm(props) {
         className="container"
         style={{ color: props.mode === "light" ? "black" : "white" }}
       >
-        <h1>{props.heading}</h1>
+        <h2 className="mb-4">{props.heading}</h2>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -70,19 +71,19 @@ export default function TextForm(props) {
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLowClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleCopyClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopyClick}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleSpaceClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleSpaceClick}>
           Remove extra spaces
         </button>
-        <button className="btn btn-danger mx-1" onClick={handleClearClick}>
+        <button disabled={text.length===0} className="btn btn-danger mx-1 my-1" onClick={handleClearClick}>
           Clear text
         </button>
       </div>
@@ -90,17 +91,18 @@ export default function TextForm(props) {
         className="container my-3"
         style={{ color: props.mode === "light" ? "black" : "white" }}
       >
-        <h2>Your text summary</h2>
+        <h3>Your text summary</h3>
         <p>
           {/* {text.split(" ").length} words, {text.length} characters */}
-          {text.trim() === "" ? 0 : text.trim().split(/\s+/).length} words, {text.length} characters
+          {text.split(" ").filter((element)=>{return element.length!==0}).length} words, {text.length} characters
+          {/* {text.trim() === "" ? 0 : text.trim().split(/\s+/).length} words, {text.length} characters */}
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
-        <h3>Preview</h3>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes read</p>
+        <h4>Preview</h4>
         <p>
           {text.length > 0
             ? text
-            : "Enter something in to the textbox above to preview it here"}
+            : "Nothing to priview!"}
         </p>
       </div>
     </>
