@@ -10,8 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [darkMode, setDarkMode] = useState("light"); // wheather dark mode is enabled or not
   const [alert, setAlert] = useState(null);
-  const [theme, setTheme] = useState(null);
-  const [themeFontColor, setThemeFontColor] = useState(null);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -23,11 +21,6 @@ function App() {
     }, 2000);
   };
 
-  const handleTheme = (color1, color2) => {
-    setTheme(color1);
-    setThemeFontColor(color2);
-    console.log(color1, color2);
-  };
 
   const removeBodyClasses = () => {
     document.body.classList.remove("bg-light");
@@ -62,8 +55,6 @@ function App() {
       <Router>
         <Navbar
           title="TextUtils"
-          theme={theme}
-          handleTheme={handleTheme}
           mode={darkMode}
           toggleMode={toggleMode}
         />
@@ -76,8 +67,6 @@ function App() {
               element={
                 <TextForm
                   showAlert={showAlert}
-                  theme={theme}
-                  themeFontColor={themeFontColor}
                   heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces"
                   mode={darkMode}
                 />
